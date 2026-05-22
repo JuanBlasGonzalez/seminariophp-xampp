@@ -9,7 +9,7 @@ WALLy Street es un simulador de mercado financiero. Los usuarios registrados rec
 ## 🛠️ Tecnologías
 
 - PHP 8+
-- [Slim Framework 4](https://www.slimframework.com/)
+- Slim Framework 4
 - MySQL
 - XAMPP (entorno local)
 - Composer
