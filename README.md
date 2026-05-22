@@ -222,4 +222,4 @@ seminariophp-xampp/
 
 ## 👥 Autores
 Juan Blas González Seijas - Valentín Lumbreras    
-Proyecto grupal — Seminario de Lenguajes, opción PHP · UNLP 2026
+Seminario de Lenguajes PHP · UNLP 2026
