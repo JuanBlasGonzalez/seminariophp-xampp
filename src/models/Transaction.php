@@ -24,7 +24,7 @@ class Transaction {
 
         if (!empty($filters['type'])) {
             $query .= " AND transaction_type = ?";
-            $params[] = $filters['type'];
+            $params[] = $filters['type'];   
         }
         if (!empty($filters['asset_id'])) {
             $query .= " AND asset_id = ?";

@@ -13,6 +13,26 @@ class AssetController {
         // Obtener todos los parámetros de la query string (ej: ?type={bitcoin}) como un array asociativo.
         $filters = $request->getQueryParams();
 
+        // Validar que el filtro de tipo, si existe, sea uno de los valores permitidos.
+        if (isset($filters['type'])) {
+            $validAssetNames = ['Gold', 'Silver', 'YPF', 'Petroleum', 'Bitcoin', 'Apple', 'Soybean'];
+            if (!in_array($filters['type'], $validAssetNames)) {
+                $response->getBody()->write(json_encode(['error' => 'El valor para el filtro type es invalido.']));
+                return $response->withStatus(400);
+            }
+        }
+
+        // Validar que los filtros de precio, si existen, sean numéricos.
+        if (isset($filters['min_price']) && !is_numeric($filters['min_price'])) {
+            $response->getBody()->write(json_encode(['error' => 'El valor del filtro min_price debe ser un número.']));
+            return $response->withStatus(400);
+        }
+
+        if (isset($filters['max_price']) && !is_numeric($filters['max_price'])) {
+            $response->getBody()->write(json_encode(['error' => 'El valor del filtro max_price debe ser un número.']));
+            return $response->withStatus(400);
+        }
+
         // Llamar a un método en el modelo asset que devuelvo los assets filtrados.
         $assets = Asset::getFiltered($filters);
 

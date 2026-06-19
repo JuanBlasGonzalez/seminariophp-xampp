@@ -17,6 +17,12 @@ class TransactionController {
         $loggedInUser = $request->getAttribute('user');
         // Se obtienen los posibles filtros de la URL (ej: ?type=buy)
         $filters = $request->getQueryParams();
+        
+        // Validar que el filtro 'type', si existe, sea 'buy' o 'sell'.
+        if (isset($filters['type']) && !in_array(strtolower($filters['type']), ['buy', 'sell'])) {
+            $response->getBody()->write(json_encode(['error' => 'El valor para el filtro type es invalido. Use "buy" o "sell".']));
+            return $response->withStatus(400);
+        }
 
         // 2. Usar el ID del usuario logueado para buscar su historial de transacciones.
         $transactions = Transaction::getByUser($loggedInUser['id'], $filters);

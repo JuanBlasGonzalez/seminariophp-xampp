@@ -25,7 +25,7 @@ class Asset {
         $params = [];
 
         // Añadimos condiciones a la consulta dinámicamente si los filtros existen.
-        if (!empty($filters['type'])) {
+        if (!empty($filters['type'])) { 
             $query .= " AND name = ?";
             $params[] = $filters['type'];
         }

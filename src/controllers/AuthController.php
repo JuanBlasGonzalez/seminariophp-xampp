@@ -23,6 +23,12 @@ class AuthController {
             return $response->withStatus(400);
         }
         
+        // Validar que el email tenga un formato válido.
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $response->getBody()->write(json_encode(['error' => 'El formato del email es invalido.']));
+            return $response->withStatus(400);
+        }
+
         // Usa el modelo User para buscar en la base de datos un usuario con ese email.
         $user = User::findByEmail($email);
         
