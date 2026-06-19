@@ -46,14 +46,20 @@ class AssetController {
         $asset_id = $args['asset_id'];
         $quantity = $args['quantity'];
 
-        // Validar la cantidad. 
-        // Usamos min() para asegurarnos de que no se pidan más de 5.
-        // (int) convierte el string de la URL a un número.
-        $limit = min((int)$quantity, 5);
+        // --- Validación de la cantidad  ---
 
-        // Si se pide 0 o un número negativo, no tiene sentido, así que lo ajustamos a 5 por defecto.
-        if ($limit <= 0) {
-            $limit = 5;
+        // 1. Validamos que la cantidad sea un string que contenga solo dígitos.
+        //    Esto rechaza decimales ("3.14"), negativos ("-1") y texto ("abc").
+        if (!ctype_digit((string)$quantity)) {
+            $response->getBody()->write(json_encode(['error' => 'El valor para quantity debe ser un número entero entre 1 y 5.']));
+            return $response->withStatus(400);
+        }
+
+        // 2. Ahora que sabemos que es un entero, lo convertimos y validamos el rango.
+        $limit = (int)$quantity;
+        if ($limit < 1 || $limit > 5) {
+            $response->getBody()->write(json_encode(['error' => 'El valor para quantity debe ser un número entero entre 1 y 5.']));
+            return $response->withStatus(400);
         }
 
         // Llamar al modelo de asset para obtener el historial del activo.
