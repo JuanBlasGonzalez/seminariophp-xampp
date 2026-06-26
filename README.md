@@ -96,7 +96,7 @@ INSERT INTO assets (name, current_price) VALUES
 
 4. Configurar la conexión a la base de datos en `src/config/DB.php` con tus credenciales locales.
 
-5. Apuntar el servidor al directorio `public/`. En XAMPP podés configurar un VirtualHost o acceder directamente via `http://localhost/seminariophp-xampp/public/`.
+5. Acceder directamente via `http://localhost/seminariophp-xampp/`.
 
 ---
 
