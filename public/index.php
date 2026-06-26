@@ -14,7 +14,7 @@ use App\middleware\AuthMiddleware;
 require __DIR__ . '/../vendor/autoload.php';
 
 $app = AppFactory::create();
-
+$app->setBasePath('/slim');
 $app->addRoutingMiddleware();
 $app->addBodyParsingMiddleware();
 $app->addErrorMiddleware(true, true, true);
