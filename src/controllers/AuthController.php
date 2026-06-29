@@ -51,8 +51,11 @@ class AuthController {
             // Si se guardó correctamente, responde con un 200 OK y envía el token al cliente.
             $response->getBody()->write(json_encode([
                 'message' => 'Login exitoso.',
-                'token' => $token
-            ]));
+                'token' => $token,
+                'id' => $user['id'],
+                'name' => $user['name'],
+                'is_admin' => $user['is_admin']
+            ]));    
             return $response->withStatus(200);
         }
         

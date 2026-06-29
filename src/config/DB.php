@@ -9,8 +9,8 @@ class DB {
 
     public static function getConnection() {
         if (!self::$connection) {
-            // Datos del contenedor de base de datos de tu Docker
-            $host = 'localhost'; 
+            // Datos del la base de datos 
+            $host = '127.0.0.1'; 
             $dbname = 'seminariophp';
             $user = 'root';
             $pass = '';

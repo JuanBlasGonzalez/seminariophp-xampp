@@ -14,7 +14,7 @@ use App\middleware\AuthMiddleware;
 require __DIR__ . '/../vendor/autoload.php';
 
 $app = AppFactory::create();
-
+$app->setBasePath('/seminariophp');// Para que funcione en xampp con Apache , si usas otro servidor no es necesario
 $app->addRoutingMiddleware();
 $app->addBodyParsingMiddleware();
 $app->addErrorMiddleware(true, true, true);
