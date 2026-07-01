@@ -55,6 +55,7 @@ class AuthController {
                 'id' => $user['id'],
                 'name' => $user['name'],
                 'is_admin' => $user['is_admin']
+                'balance' => $user['balance']
             ]));    
             return $response->withStatus(200);
         }
