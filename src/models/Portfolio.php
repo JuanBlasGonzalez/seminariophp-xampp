@@ -13,7 +13,7 @@ class Portfolio {
    
     public static function getByUser($user_id) {
         $db = DB::getConnection();
-        $stmt = $db->prepare("SELECT a.name, p.quantity, a.current_price, 
+        $stmt = $db->prepare("SELECT p.asset_id, a.name, p.quantity, a.current_price, 
                                      (p.quantity * a.current_price) AS total_value
                               FROM portfolio p 
                               JOIN assets a ON p.asset_id = a.id 
