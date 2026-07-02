@@ -19,19 +19,22 @@ class Transaction {
     public static function getByUser($user_id, $filters = []) {
         $db = DB::getConnection();
         
-        $query = "SELECT * FROM transactions WHERE user_id = ?";
+        $query = "SELECT t.*, a.name as asset_name 
+                FROM transactions t
+                JOIN assets a ON t.asset_id = a.id
+                WHERE t.user_id = ?";
         $params = [$user_id];
 
         if (!empty($filters['type'])) {
-            $query .= " AND transaction_type = ?";
+            $query .= " AND t.transaction_type = ?";
             $params[] = $filters['type'];   
         }
         if (!empty($filters['asset_id'])) {
-            $query .= " AND asset_id = ?";
+            $query .= " AND t.asset_id = ?";
             $params[] = $filters['asset_id'];
         }
 
-        $query .= " ORDER BY transaction_date DESC";
+        $query .= " ORDER BY t.transaction_date DESC";
         $stmt = $db->prepare($query);
         $stmt->execute($params);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);

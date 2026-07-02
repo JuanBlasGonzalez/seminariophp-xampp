@@ -22,7 +22,7 @@ class User {
         // Esta consulta devuelve el nombre y el valor total del portfolio para cada usuario no administrador.
         $query = "
             SELECT 
-                u.name,(COALESCE(SUM(p.quantity * a.current_price), 0)) AS total_portfolio_value
+                u.id,u.name,(COALESCE(SUM(p.quantity * a.current_price), 0)) AS total_portfolio_value
             FROM 
                 users u
             LEFT JOIN 

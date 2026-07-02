@@ -58,7 +58,7 @@ class AssetController {
         // 2. Ahora que sabemos que es un entero, lo convertimos y validamos el rango.
         $limit = (int)$quantity;
         if ($limit < 1 || $limit > 5) {
-            $response->getBody()->write(json_encode(['error' => 'El valor para quantity debe ser un número entero entre 1 y 5.']));
+            $response->getBody()->write(json_encode(['error' => 'El valor para quantity debe ser un numero entero entre 1 y 5.']));
             return $response->withStatus(400);
         }
 
